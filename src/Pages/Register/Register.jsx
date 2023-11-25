@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -11,6 +11,7 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate()
 
   const { createUser } = useContext(AuthContext);
   const onSubmit = (data) => {
@@ -18,14 +19,16 @@ const Register = () => {
     createUser(data.email, data.password)
     .then(result=>{
         const loggedUser = result.user;
-        console.log(loggedUser) 
+        console.log(loggedUser)
          Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "User Login Successfully",
+          title: "User created Successfully",
           showConfirmButton: false,
           timer: 1500
         });
+        navigate("/")
+
     })
   };
 

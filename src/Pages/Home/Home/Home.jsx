@@ -1,9 +1,10 @@
+import GazaNews from "../../GazaNews/GazaNews";
 
 
 const Home = () => {
     return (
         <div>
-            <h2>This is Home</h2>
+           <GazaNews></GazaNews>
         </div>
     );
 };

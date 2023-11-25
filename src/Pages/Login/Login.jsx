@@ -5,7 +5,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from 'sweetalert2'
 
 const Login = () => {
-    const {singIn}=useContext(AuthContext);
+    const {singIn, singInWithGoogle}=useContext(AuthContext);
     const navigate= useNavigate()
     const handleLogin = event=>{
         event.preventDefault();
@@ -27,7 +27,16 @@ const Login = () => {
               navigate('/')
         })
     }
-    
+    const handleWithGoogle = () => {
+      singInWithGoogle()
+        .then((result) => {
+          console.log(result.user);
+          navigate("/");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
   return (
     <div className="w-full md:w-[35%] mx-auto">
       <div className="hero-content flex-col">
@@ -73,10 +82,10 @@ const Login = () => {
               </div>
               <div className="divider">OR</div>
               <div className="mt-4">
-                <button
+                <button onClick={handleWithGoogle }
                   className=" mb-4 bg-black text-white rounded  font-semibold py-2 px-2 w-full flex items-center justify-center"
                 >
-                  <FcGoogle className="text-xl mr-3"></FcGoogle> Google
+                  <FcGoogle className="text-xl mr-3"></FcGoogle>Continue With Google
                 </button>
               </div>
             </form>
