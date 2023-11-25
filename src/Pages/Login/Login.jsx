@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from 'sweetalert2'
 
 const Login = () => {
-    const {singIn}=useContext(AuthContext)
+    const {singIn}=useContext(AuthContext);
+    const navigate= useNavigate()
     const handleLogin = event=>{
         event.preventDefault();
         const from = event.target;
@@ -15,8 +17,17 @@ const Login = () => {
         .then(result =>{
             const user = result.user;
             console.log(user)
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Login Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/')
         })
     }
+    
   return (
     <div className="w-full md:w-[35%] mx-auto">
       <div className="hero-content flex-col">

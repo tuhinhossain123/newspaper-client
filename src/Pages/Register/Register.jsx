@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const {
@@ -10,13 +11,21 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const { createUser } = useContext(AuthContext);
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
     .then(result=>{
         const loggedUser = result.user;
-        console.log(loggedUser)
+        console.log(loggedUser) 
+         Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Login Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
     })
   };
 
@@ -103,7 +112,7 @@ const Register = () => {
                   )}
               </div>
               <div className="form-control mt-4">
-                <button className="p-3 font-bold rounded text-lg bg-[#02a388] text-white">
+                <button className="py-1 px-2 font-semibold  rounded text-lg bg-[#02a388] text-white">
                   Register
                 </button>
               </div>
