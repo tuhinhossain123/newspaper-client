@@ -2,7 +2,7 @@ import gaza from "../../assets/gaza.jpg";
 import tea from "../../assets/tea.jpg";
 const GazaNews = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-center gap-5 max-w-[1200px] mx-auto mb-16 px-5 md:px-0">
+    <div className="flex flex-col md:flex-row justify-center gap-5 max-w-[1200px] mx-auto mb-10 px-5 md:px-0">
       <div className=" w-full md:w-[70%]  flex flex-col-reverse md:flex-row justify-evenly gap-2">
         <div className="w-full md:w-[50%]  py-3">
           <h2 className="text-2xl font-bold mb-3">
