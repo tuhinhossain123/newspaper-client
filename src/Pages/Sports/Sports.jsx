@@ -5,7 +5,7 @@ import argentina from "../../assets/argentina.png";
 
 const Sports = () => {
   return (
-    <div className="max-w-[1200px] mx-auto mb-20 md:border-t-2 md:pt-4 pl-0 border-t-0">
+    <div className="max-w-[1200px] mx-auto mb-20 md:border-t-2 md:pt-4 pl-0 border-t-0 border-gray-300">
         <h2 className="text-2xl font-semibold mb-2 px-5 md:px-0">Tody Sports</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5 md:px-0">
         <div>

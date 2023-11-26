@@ -36,7 +36,7 @@ const GazaNews = () => {
           </p>
         </div>
       </div>
-      <div className="w-full md:w-[30%] md:border-l-2 md:pl-4 pl-0 border-l-0">
+      <div className="w-full md:w-[30%] md:border-l-2 md:pl-4 pl-0 border-l-0 border-gray-400">
         <h2 className="text-2xl font-bold mb-3">
           Tea, a Train and an Epic Sunrise at a Summer Retreat of the Raj
         </h2>
