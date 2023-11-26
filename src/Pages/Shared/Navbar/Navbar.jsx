@@ -138,14 +138,14 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <>
-              <div className="flex">
+              <div className="flex  gap-3">
                 <div className="hidden  md:flex items-center">
                   {/* <span className="mr-4">{user.email}</span> */}
                   <label
                     tabIndex={0}
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="w-16 rounded-full mr-5">
+                    <div className="w-24 rounded-full">
                       <img src={user?.photoURL} />
                     </div>
                   </label>
