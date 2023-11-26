@@ -7,6 +7,7 @@ import Register from "../Pages/Register/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddArticles from "../Pages/AddArticles/AddArticles";
 import AllArticles from "../Pages/AllArticles/AllArticles";
+import ArticlesDetails from "../Pages/ArticlesDetails/ArticlesDetails";
 
 export const router = createBrowserRouter([
     {
@@ -28,7 +29,12 @@ export const router = createBrowserRouter([
         },
         {
             path: "/allArticles",
-            element: <AllArticles></AllArticles>
+            element: <AllArticles></AllArticles>,
+            loader:()=> fetch('http://localhost:5000/allArticles')
+        },
+        {
+          path: "/allArticles/:id",
+          element: <ArticlesDetails></ArticlesDetails>
         },
         {
           path: "/addArticles",

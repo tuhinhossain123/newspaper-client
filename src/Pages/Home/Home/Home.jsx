@@ -6,7 +6,7 @@ import TrendingArticles from "../../TrendingArticles/TrendingArticles";
 const Home = () => {
     return (
         <div>
-            {/* <TrendingArticles></TrendingArticles> */}
+            <TrendingArticles></TrendingArticles>
            <GazaNews></GazaNews>
            <Sports></Sports>
         </div>
