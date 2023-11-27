@@ -28,6 +28,7 @@ export const router = createBrowserRouter([
             element: <Register></Register>
         },
         {
+        
             path: "/allArticles",
             element: <AllArticles></AllArticles>,
             loader:()=> fetch('http://localhost:5000/allArticles')
