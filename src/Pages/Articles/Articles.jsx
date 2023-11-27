@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const Articles = ({ articles }) => {
   const { img, title, publisher, description, _id } = articles;
+  console.log(_id)
   return (
     <div className="bg-base-100">
       <div>
@@ -14,7 +15,7 @@ const Articles = ({ articles }) => {
           {description.slice(0, 110)}...
         </p>
         <div className="pt-2">
-          <Link to={`allArticles/${_id}`} className=" font-semibold">
+          <Link to={`/articles/${_id}`} className=" font-semibold">
             View Details..
           </Link>
         </div>
