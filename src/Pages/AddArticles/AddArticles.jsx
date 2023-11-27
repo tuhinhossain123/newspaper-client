@@ -1,28 +1,30 @@
 import Select from "react-select";
 import useAxiosPublic from "../Hooks/axios";
 
-const images_hosting_key= import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const images_hosting_api= `https://api.imgbb.com/1/upload?key=${images_hosting_key}`
+const images_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const images_hosting_api = `https://api.imgbb.com/1/upload?key=${images_hosting_key}`;
 const AddArticles = () => {
-  const axiosPublic =useAxiosPublic()
-  const handleSubmit = async(e) => {
-    e.preventDefault()
+  const axiosPublic = useAxiosPublic();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const from = e.target;
-    const title= from.title.value;
+    const title = from.title.value;
     const img = e.target.img.files[0];
     const publisher = from.publisher.value;
     const tags = from.tags.value;
     const des = from.des.value;
-    const user ={title, img, publisher, tags,des,}
-    console.log(user)
-    const image = { image: img }
+
+  
+    const image = { image: img };
 
     const res = await axiosPublic.post(images_hosting_api, image, {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    })
-    console.log(res.data)
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res.data);
+    const user = { title, img: res.data.data.url, publisher, tags, des };
+    console.log(user);
 
     fetch("http://localhost:5000/allArticles", {
       method: "POST",
@@ -35,7 +37,7 @@ const AddArticles = () => {
       .then((data) => {
         console.log(data);
       });
-  }
+  };
 
   const options = [
     { value: "Education", label: "Education" },
@@ -49,7 +51,6 @@ const AddArticles = () => {
     <div className="px-6 mb-10">
       <h2 className="text-3xl font-semibold text-center mb-3">Add Articles</h2>
       <form
-       
         onSubmit={handleSubmit}
         className="w-full md:w-[60%] mx-auto bg-black rounded-sm drop-shadow-2xl p-10"
       >
@@ -62,7 +63,6 @@ const AddArticles = () => {
               <input
                 type="text"
                 name="title"
-              
                 placeholder="Title"
                 className="input input-bordered w-full bg-gray-300"
               />
@@ -75,7 +75,6 @@ const AddArticles = () => {
             <input
               type="file"
               name="img"
-              
               className="file-input file-input-bordered w-full bg-gray-300"
             />
           </div>
@@ -88,7 +87,6 @@ const AddArticles = () => {
             <select
               id=""
               name="publisher"
-           
               className=" input p-3 input-bordered w-full bg-gray-300"
             >
               <option value="tuhin">Tuhin</option>
@@ -108,7 +106,6 @@ const AddArticles = () => {
               name="tags"
               options={options}
               classNamePrefix="select"
-             
             />
           </div>
         </div>

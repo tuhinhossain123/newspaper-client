@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const Articles = ({ articles }) => {
   const { img, title, publisher, description, _id } = articles;
+  console.log(img)
   console.log(_id)
   return (
     <div className="bg-base-100">
