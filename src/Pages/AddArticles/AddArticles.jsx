@@ -1,8 +1,58 @@
+import Select from "react-select";
+import useAxiosPublic from "../Hooks/axios";
+
+const images_hosting_key= import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const images_hosting_api= `https://api.imgbb.com/1/upload?key=${images_hosting_key}`
 const AddArticles = () => {
+  const axiosPublic =useAxiosPublic()
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    const from = e.target;
+    const title= from.title.value;
+    const img = e.target.img.files[0];
+    const publisher = from.publisher.value;
+    const tags = from.tags.value;
+    const des = from.des.value;
+    const user ={title, img, publisher, tags,des,}
+    console.log(user)
+    const image = { image: img }
+
+    const res = await axiosPublic.post(images_hosting_api, image, {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    })
+    console.log(res.data)
+
+    fetch("http://localhost:5000/allArticles", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  const options = [
+    { value: "Education", label: "Education" },
+    { value: "Finance", label: "Finance" },
+    { value: "Environment", label: "Environment" },
+    { value: "Health", label: "Health" },
+    { value: "Personal Growth", label: "Personal Growth" },
+  ];
+
   return (
     <div className="px-6 mb-10">
       <h2 className="text-3xl font-semibold text-center mb-3">Add Articles</h2>
-      <form className="w-full md:w-[60%] mx-auto bg-black rounded-sm drop-shadow-2xl p-10">
+      <form
+       
+        onSubmit={handleSubmit}
+        className="w-full md:w-[60%] mx-auto bg-black rounded-sm drop-shadow-2xl p-10"
+      >
         <div className="md:flex justify-center gap-5 mb-2">
           <div className="form-control w-full">
             <label className="label">
@@ -12,6 +62,7 @@ const AddArticles = () => {
               <input
                 type="text"
                 name="title"
+              
                 placeholder="Title"
                 className="input input-bordered w-full bg-gray-300"
               />
@@ -23,6 +74,8 @@ const AddArticles = () => {
             </label>
             <input
               type="file"
+              name="img"
+              
               className="file-input file-input-bordered w-full bg-gray-300"
             />
           </div>
@@ -30,29 +83,33 @@ const AddArticles = () => {
         <div className="md:flex justify-center gap-5 mb-2">
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Publisher</span>
+              <span className="label-text dark:text-white">Publisher</span>
             </label>
-            <label>
-              <input
-                type="text"
-                name="publisher"
-                placeholder="Publisher"
-                className="input input-bordered w-full bg-gray-300"
-              />
-            </label>
+            <select
+              id=""
+              name="publisher"
+           
+              className=" input p-3 input-bordered w-full bg-gray-300"
+            >
+              <option value="tuhin">Tuhin</option>
+              <option value="riyan">Riyan</option>
+              <option value="upal">Upal</option>
+              <option value="abir">Abir</option>
+              <option value="tanvir">Tanvir</option>
+            </select>
           </div>
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text text-white">Tags</span>
             </label>
-            <label>
-              <input
-                type="text"
-                name="Tags"
-                placeholder="Tags"
-                className="input input-bordered w-full bg-gray-300"
-              />
-            </label>
+            <Select
+              defaultValue={[options[1]]}
+              isMulti
+              name="tags"
+              options={options}
+              classNamePrefix="select"
+             
+            />
           </div>
         </div>
         <div className="form-control mx-auto text-center mb-2 ">
@@ -61,14 +118,19 @@ const AddArticles = () => {
           </label>
           <textarea
             className="border p-5 bg-gray-300 rounded"
-            name="service_des"
+            name="des"
+            // {...register("des", { required: true })}
             id=""
             cols="10"
             rows="3"
           ></textarea>
         </div>
         <div className="flex justify-center mt-3">
-          <input type="submit" value="Submit" className="input input-bordered w-full bg-gray-300"/>
+          <input
+            type="submit"
+            value="Submit"
+            className="input input-bordered w-full bg-gray-300"
+          />
         </div>
       </form>
     </div>

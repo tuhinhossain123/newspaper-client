@@ -12,7 +12,7 @@ const Articles = ({ articles }) => {
       <div className="space-y-1 mt-1 px-5 mb-6">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <p className="font-medium text-gray-400">
-          {description.slice(0, 110)}...
+          {description?.slice(0, 100)}...
         </p>
         <div className="pt-2">
           <Link to={`/articles/${_id}`} className=" font-semibold">
