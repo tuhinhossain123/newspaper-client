@@ -1,6 +1,6 @@
 ## Category_0012
 ## website name : NewsPaper
-## website link : 
+## website link : https://newspaper-64536.web.app/
 
 * First creating the client site and server site.
 * Adding data to the server
