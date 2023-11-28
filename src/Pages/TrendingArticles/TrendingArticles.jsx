@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const TrendingArticles = () => {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allArticles")
+    fetch("https://newspaper-server-ten.vercel.app/allArticles")
       .then((res) => res.json())
       .then((data) => {
         setArticles(data);
@@ -22,7 +22,7 @@ const TrendingArticles = () => {
         modules={[Navigation]}
         className="mySwiper w-[95%] mx-auto"
       >
-        {articles?.slice(0,6).map((article) => (
+        {articles?.slice(0, 6).map((article) => (
           <SwiperSlide key={article._id} className="">
             <div
               className="h-[30rem] flex items-center justify-center"

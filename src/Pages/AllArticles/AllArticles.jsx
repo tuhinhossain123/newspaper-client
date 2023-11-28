@@ -8,7 +8,6 @@ const AllArticles = () => {
 //   const filterData = showAll?.filter((item) =>
 //   item.service_name?.toLowerCase().includes(searchItem.toLowerCase())
 // );
-  console.log(data);
   return (
     <div className="max-w-[1200px] mx-auto ">
       <div className="my-16 mb-10 flex justify-center">

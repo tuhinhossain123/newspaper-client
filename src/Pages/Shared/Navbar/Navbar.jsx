@@ -98,11 +98,25 @@ const Navbar = () => {
          Premium Articles
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/dashboard/allUsers"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-gray-600 underline font-medium"
+              : ""
+          }
+        >
+        Dashboard
+        </NavLink>
+      </li>
     </>
   );
   return (
     <>
-      <div className="navbar max-w-[1200px] mx-auto">
+      <div className="navbar  max-w-[1200px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -1,10 +1,12 @@
 import Select from "react-select";
 import useAxiosPublic from "../Hooks/axios";
+import { useNavigate } from "react-router-dom";
 
 const images_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const images_hosting_api = `https://api.imgbb.com/1/upload?key=${images_hosting_key}`;
 const AddArticles = () => {
   const axiosPublic = useAxiosPublic();
+  const navigate= useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const from = e.target;
@@ -14,7 +16,6 @@ const AddArticles = () => {
     const tags = from.tags.value;
     const des = from.des.value;
 
-  
     const image = { image: img };
 
     const res = await axiosPublic.post(images_hosting_api, image, {
@@ -26,7 +27,7 @@ const AddArticles = () => {
     const user = { title, img: res.data.data.url, publisher, tags, des };
     console.log(user);
 
-    fetch("http://localhost:5000/allArticles", {
+    fetch("https://newspaper-server-ten.vercel.app/allArticles", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -36,15 +37,17 @@ const AddArticles = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        
       });
+      navigate("/allArticles")
   };
 
   const options = [
     { value: "Education", label: "Education" },
-    { value: "Finance", label: "Finance" },
+    { value: "Sports", label: "Sports" },
     { value: "Environment", label: "Environment" },
     { value: "Health", label: "Health" },
-    { value: "Personal Growth", label: "Personal Growth" },
+    { value: "", label: "Personal Growth" },
   ];
 
   return (
