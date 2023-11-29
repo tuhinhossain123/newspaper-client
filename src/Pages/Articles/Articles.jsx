@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Articles = ({ articles, searchItem,setSearchItem }) => {
+const Articles = ({ articles}) => {
   const { img, title, publisher, description, _id } = articles;
   return (
     <div className="bg-base-100">

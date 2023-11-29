@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -20,6 +21,11 @@ const Register = () => {
     .then(result=>{
         const loggedUser = result.user;
         console.log(loggedUser)
+        axios.post('http://localhost:5000/users',{
+          name:data.name, 
+          email:data.email,
+          img:data.imgUrl
+        })
          Swal.fire({
           position: "top-end",
           icon: "success",

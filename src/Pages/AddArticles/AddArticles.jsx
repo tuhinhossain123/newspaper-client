@@ -1,20 +1,23 @@
 import Select from "react-select";
 import useAxiosPublic from "../Hooks/axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const images_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const images_hosting_api = `https://api.imgbb.com/1/upload?key=${images_hosting_key}`;
 const AddArticles = () => {
+
   const axiosPublic = useAxiosPublic();
-  const navigate= useNavigate()
+  const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
+  useEffect(()=>{console.log(tags)},[tags])
   const handleSubmit = async (e) => {
     e.preventDefault();
     const from = e.target;
     const title = from.title.value;
     const img = e.target.img.files[0];
     const publisher = from.publisher.value;
-    const tags = from.tags.value;
-    const des = from.des.value;
+    const description = from.description.value;
 
     const image = { image: img };
 
@@ -24,7 +27,14 @@ const AddArticles = () => {
       },
     });
     console.log(res.data);
-    const user = { title, img: res.data.data.url, publisher, tags, des };
+    const user = {
+      title,
+      img: res.data.data.url,
+      publisher,
+      description,
+      tags: tags.map((tag) => tag.value),
+    };
+
     console.log(user);
 
     fetch("https://newspaper-server-ten.vercel.app/allArticles", {
@@ -37,9 +47,8 @@ const AddArticles = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
       });
-      navigate("/allArticles")
+    navigate("/allArticles");
   };
 
   const options = [
@@ -48,6 +57,7 @@ const AddArticles = () => {
     { value: "Environment", label: "Environment" },
     { value: "Health", label: "Health" },
     { value: "", label: "Personal Growth" },
+    { value: "", world: "world" },
   ];
 
   return (
@@ -109,6 +119,9 @@ const AddArticles = () => {
               name="tags"
               options={options}
               classNamePrefix="select"
+              onChange={(value) => {
+                setTags(value);
+              }}
             />
           </div>
         </div>
@@ -118,8 +131,7 @@ const AddArticles = () => {
           </label>
           <textarea
             className="border p-5 bg-gray-300 rounded"
-            name="des"
-            // {...register("des", { required: true })}
+            name="description"
             id=""
             cols="10"
             rows="3"
