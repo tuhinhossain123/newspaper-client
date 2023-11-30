@@ -23,18 +23,23 @@ const AddPublisher = () => {
     const user = { publisherName, img: res.data.data.display_url };
     console.log(user);
 
-    axios.post("http://localhost:5000/publisher", user).then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Add Publisher in Added ",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    axios
+      .post(
+        "https://newspaper-server-ten.vercel.app/publisher",
+        user
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add Publisher in Added ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div>

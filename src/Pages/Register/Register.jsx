@@ -12,30 +12,28 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { createUser } = useContext(AuthContext);
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-    .then(result=>{
-        const loggedUser = result.user;
-        console.log(loggedUser)
-        axios.post('http://localhost:5000/users',{
-          name:data.name, 
-          email:data.email,
-          img:data.imgUrl
-        })
-         Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "User created Successfully",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        navigate("/")
-
-    })
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      axios.post("https://newspaper-server-ten.vercel.app/users", {
+        name: data.name,
+        email: data.email,
+        img: data.imgUrl,
+      });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User created Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    });
   };
 
   return (
@@ -99,10 +97,11 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  {...register("password", { 
+                  {...register("password", {
                     required: true,
                     minLength: 6,
-                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/ })}
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                  })}
                   placeholder="Enter you password"
                   name="password"
                   className="input input-bordered"
@@ -115,10 +114,10 @@ const Register = () => {
                 )}
                 {errors.password?.type === "pattern" && (
                   <p className="text-red-600">
-                    Password must have one Capital letter, one number
-                    and one special character.
+                    Password must have one Capital letter, one number and one
+                    special character.
                   </p>
-                  )}
+                )}
               </div>
               <div className="form-control mt-4">
                 <button className="py-1 px-2 font-semibold  rounded text-lg bg-[#02a388] text-white">
