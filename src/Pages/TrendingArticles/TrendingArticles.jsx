@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const TrendingArticles = () => {
   const [articles, setArticles] = useState([]);
@@ -37,7 +38,17 @@ const TrendingArticles = () => {
                 <h2 className="text-white text-5xl font-bold m-5 text-center">
                   {article.title}
                 </h2>
-                <p className="text-white px-16">{article.description}</p>
+                <p className="text-white px-16 text-center">
+                  {article.description.slice(0, 500)}....
+                </p>
+                <div className="flex justify-center py-2">
+                  <Link
+                    className="bg-[#02a388] py-2 px-2 text-white font-semibold rounded-md"
+                    to="allArticles"
+                  >
+                    See More...
+                  </Link>
+                </div>
               </div>
             </div>
           </SwiperSlide>

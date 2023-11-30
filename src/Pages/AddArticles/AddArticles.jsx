@@ -56,8 +56,8 @@ const AddArticles = () => {
     { value: "Sports", label: "Sports" },
     { value: "Environment", label: "Environment" },
     { value: "Health", label: "Health" },
-    { value: "", label: "Personal Growth" },
-    { value: "", world: "world" },
+    { value: "world", label: "world" },
+    { value: "world", world: "world" },
   ];
 
   return (
