@@ -19,16 +19,16 @@ const Publisher = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {publisher?.map((publish) => (
-          <div key={publish._id}>
-            <div className="relative">
-              <img src={publish.img} alt="" className="rounded w-full h-[60vh]" />
+          <div key={publish._id} className="group relative">
+            <div className="">
+              <img src={publish.img} alt="" className="rounded w-full " />
             </div>
-            <div className=" absolute -mt-12 ml-24">
-              <div className="flex justify-center items-center gap-2 text-xl text-red-600">
+            <div className=" absolute bottom-0 left-0 hidden bg-opacity-50 group-hover:flex items-center justify-center flex-col bg-black w-full h-full">
+              <div className="flex justify-center items-center gap-2 text-xl text-white">
                 <FaFacebookF />
                 <FaTwitter />
               </div>
-              <h2 className="text-lg font-semibold text-center">
+              <h2 className="text-lg font-semibold text-white">
                 {" "}
                 {publish.publisherName}
               </h2>

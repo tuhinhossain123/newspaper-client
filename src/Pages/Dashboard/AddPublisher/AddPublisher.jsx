@@ -1,5 +1,6 @@
 import axios from "axios";
 import useAxiosPublic from "../../Hooks/axios";
+import Swal from "sweetalert2";
 
 const images_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const images_hosting_api = `https://api.imgbb.com/1/upload?key=${images_hosting_key}`;
@@ -10,8 +11,7 @@ const AddPublisher = () => {
     const from = e.target;
     const publisherName = from.publisherName.value;
     const img = e.target.img.files[0];
- 
-    
+
     const image = { image: img };
 
     const res = await axiosPublic.post(images_hosting_api, image, {
@@ -20,12 +20,20 @@ const AddPublisher = () => {
       },
     });
     console.log(res.data.data);
-    const user = { publisherName, img:res.data.data.display_url };
+    const user = { publisherName, img: res.data.data.display_url };
     console.log(user);
 
-    axios.post("http://localhost:5000/publisher", user)
-    .then((res) => {
+    axios.post("http://localhost:5000/publisher", user).then((res) => {
       console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Add Publisher in Added ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     });
   };
   return (

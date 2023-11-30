@@ -21,7 +21,7 @@ const TrendingArticles = () => {
       <Swiper
         navigation={true}
         modules={[Navigation]}
-        className="mySwiper w-[95%] mx-auto"
+        className="mySwiper w-[95%] mx-auto -z-10"
       >
         {articles?.slice(0, 6).map((article) => (
           <SwiperSlide key={article._id} className="">
