@@ -1,11 +1,32 @@
+import axios from "axios";
+import useAxiosPublic from "../../Hooks/axios";
+
+const images_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const images_hosting_api = `https://api.imgbb.com/1/upload?key=${images_hosting_key}`;
 const AddPublisher = () => {
-  const handleFrom = (e) => {
+  const axiosPublic = useAxiosPublic();
+  const handleFrom = async (e) => {
     e.preventDefault();
     const from = e.target;
     const publisherName = from.publisherName.value;
-    const img = from.img.value;
-    const user = { publisherName, img };
+    const img = e.target.img.files[0];
+ 
+    
+    const image = { image: img };
+
+    const res = await axiosPublic.post(images_hosting_api, image, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res.data.data);
+    const user = { publisherName, img:res.data.data.display_url };
     console.log(user);
+
+    axios.post("http://localhost:5000/publisher", user)
+    .then((res) => {
+      console.log(res.data);
+    });
   };
   return (
     <div>
