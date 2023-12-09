@@ -9,7 +9,7 @@
 * Deploying the website to vercel live link creating 
 
 ## Technologies
-- Html
+  - Html
   - Tailwind
   - Daisy Ui
   - JavaScript
