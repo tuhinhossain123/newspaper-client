@@ -9,9 +9,12 @@
 * Deploying the website to vercel live link creating 
 
 ## Technologies
-1. javascript
-2. React.js
-3. Firebase
-4. MongoDB
-5. Node.js
+- Html
+  - Tailwind
+  - Daisy Ui
+  - JavaScript
+  - React
+  - firebase
+  - Node.js
+  - MongoDb
 
